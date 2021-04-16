@@ -1,0 +1,29 @@
+footer.footer {
+
+    width: 100%;
+    border-top: 1px solid var(--gray-color);
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer.footer span {
+    color: var(--white-color);
+    font-weight: 200;
+    font-size: .7rem;
+    padding-left: 1rem;
+}
+
+.footer-version-container {
+    height: 100%;
+    width: 200px;
+    background-color: var(--first-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-version-container span {
+    color: black;
+}

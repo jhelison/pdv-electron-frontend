@@ -1,0 +1,66 @@
+@import "../assets/fonts/stylesheet.css";
+
+@import "./components/template/Footer.css";
+@import "./components/template/Header.css";
+@import "./components/template/Main.css";
+@import "./components/template/Nav.css";
+
+:root {
+    --header-height: 30px;
+    --aside-width-small: 50px;
+    --aside-width-big: 180px;
+    --footer-height: 20px;
+
+    --first-color: #00adb5;
+    --bg-color: #393e46;
+    --sub-color: #222831;
+    --white-color: #eeeeee;
+    --gray-color: gray;
+
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+
+    --z-fixed: 100;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Poppins, serif;
+    text-decoration: none;
+    user-select: none;
+}
+
+.app {
+    margin: 0px;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: var(--aside-width-small) 1fr;
+    grid-template-rows: var(--header-height) 1fr var(--footer-height);
+    grid-template-areas: 
+        "nav header"
+        "nav content"
+        "foot foot";
+    transition: .5s;
+}
+
+aside.menu-area {
+    grid-area: nav;
+}
+
+header.header {
+    grid-area: header;
+}
+
+main.content {
+    grid-area: content;
+}
+
+footer.footer {
+    grid-area: foot;
+}
+
+.expand {
+    transition: .5s;
+    grid-template-columns: var(--aside-width-big) 1fr;
+}

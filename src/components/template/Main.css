@@ -1,0 +1,26 @@
+main.content {
+    transition: .3s;
+    background-color: var(--sub-color);
+    padding: 2rem;
+    color: var(--white-color);
+}
+
+main.content h4 {
+    font-weight: 400;
+}
+
+.children-content {
+    padding-top: 1.5rem;
+}
+
+.main-content-title {
+    display: flex;
+    align-items: center;
+}
+
+.main-content-title-icon {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    padding-right: 1rem;
+}
