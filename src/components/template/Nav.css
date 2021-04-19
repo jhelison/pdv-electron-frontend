@@ -67,3 +67,8 @@
     color: var(--white-color);
     border-left: 3px solid var(--white-color);
 }
+
+.nav-link-exit:active {
+    color: firebrick;
+    border-left: 3px solid firebrick;
+}

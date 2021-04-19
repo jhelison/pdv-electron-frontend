@@ -18,7 +18,7 @@
     --gray-color: gray;
 
     --normal-font-size: 1rem;
-    --small-font-size: .875rem;
+    --small-font-size: 0.875rem;
 
     --z-fixed: 100;
 }
@@ -37,11 +37,11 @@
     height: 100vh;
     grid-template-columns: var(--aside-width-small) 1fr;
     grid-template-rows: var(--header-height) 1fr var(--footer-height);
-    grid-template-areas: 
+    grid-template-areas:
         "nav header"
         "nav content"
         "foot foot";
-    transition: .5s;
+    transition: 0.5s;
 }
 
 aside.menu-area {
@@ -61,6 +61,6 @@ footer.footer {
 }
 
 .expand {
-    transition: .5s;
+    transition: 0.5s;
     grid-template-columns: var(--aside-width-big) 1fr;
 }

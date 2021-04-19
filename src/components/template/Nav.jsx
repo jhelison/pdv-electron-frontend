@@ -105,7 +105,7 @@ export default (props) => {
 
                     <a
                         href="#"
-                        className="nav-link"
+                        className="nav-link nav-link-exit"
                         onClick={closeWindow}
                     >
                         <div className="nav-link-icon">
