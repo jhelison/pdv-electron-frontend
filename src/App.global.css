@@ -5,6 +5,8 @@
 @import "./components/template/Main.css";
 @import "./components/template/Nav.css";
 
+@import "./components/Terminal/Terminal.css";
+
 :root {
     --header-height: 30px;
     --aside-width-small: 50px;
