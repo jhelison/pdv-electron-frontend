@@ -3,7 +3,7 @@ import "regenerator-runtime/runtime"
 import path from "path"
 import { app, BrowserWindow } from "electron"
 
-let mainWindow: BrowserWindow | null = null
+let mainWindow = null
 
 import buildMainWindow from "./screens/MainWindow"
 import buildTray from "./screens/tray"
