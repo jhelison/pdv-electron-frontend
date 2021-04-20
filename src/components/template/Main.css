@@ -3,6 +3,7 @@ main.content {
     background-color: var(--sub-color);
     padding: 2rem;
     color: var(--white-color);
+    overflow: auto;
 }
 
 main.content h4 {
