@@ -17,7 +17,7 @@ export default (props) => {
         setInterval(() => {
             console.log(getLastOutput)
             setPythonShellText(getLastOutput)
-        }, 1000)
+        }, 300)
     }
 
     return (
