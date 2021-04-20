@@ -4,6 +4,7 @@ header.header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: absolute;
 }
 
 .header-dragable-zone {

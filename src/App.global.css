@@ -35,35 +35,7 @@
 
 .app {
     margin: 0px;
-    display: grid;
     height: 100vh;
-    grid-template-columns: var(--aside-width-small) 1fr;
-    grid-template-rows: var(--header-height) calc(100vh - var(--header-height) - var(--footer-height)) var(--footer-height);
-    grid-template-areas:
-        "nav header"
-        "nav content"
-        "foot foot";
     transition: 0.5s;
     overflow: hidden;
-}
-
-aside.menu-area {
-    grid-area: nav;
-}
-
-header.header {
-    grid-area: header;
-}
-
-main.content {
-    grid-area: content;
-}
-
-footer.footer {
-    grid-area: foot;
-}
-
-.expand {
-    transition: 0.5s;
-    grid-template-columns: var(--aside-width-big) 1fr;
 }

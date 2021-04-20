@@ -1,6 +1,15 @@
 .menu-area {
     background-color: var(--bg-color);
     transition: .5s;
+    width: var(--aside-width-small);
+    height: calc(100vh - var(--header-height) - var(--footer-height));
+    position: absolute;
+    top: var(--header-height);
+    transition: .3s;
+}
+
+.expand-nav {
+    width: var(--aside-width-big);
 }
 
 .nav {

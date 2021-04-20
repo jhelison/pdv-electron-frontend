@@ -13,6 +13,7 @@ export default (props) => {
     }, [])
 
     const printChildShell = () => {
+        setPythonShellText(getLastOutput)
         setInterval(() => {
             console.log(getLastOutput)
             setPythonShellText(getLastOutput)

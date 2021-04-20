@@ -12,16 +12,23 @@ import { BsTerminal } from "react-icons/bs"
 var window = remote.getCurrentWindow()
 
 export default (props) => {
-    //Nav Toogle Script
-    const toggleMenu = (rootId) => {
-        const root = document.getElementById(rootId)
-        root.classList.toggle("expand")
+    const toggleMenu = (navId, mainId) => {
+        console.log("CLICKED")
+        const nav = document.getElementById(navId)
+        const main = document.getElementById(mainId)
+        nav.classList.toggle("expand-nav")
+        main.classList.toggle("expand-left-margin")
     }
 
     const changeSelected = (ele) => {
         const navLinks = document.querySelectorAll(".nav-link")
         navLinks.forEach((l) => l.classList.remove("active"))
         ele.classList.add("active")
+
+        const nav = document.getElementById("navbar")
+        if(nav.classList.contains("expand-nav")){
+            toggleMenu("navbar", "main-content")
+        }
     }
 
     const closeWindow = () => {
@@ -37,7 +44,7 @@ export default (props) => {
                             <div
                                 className="nav-toggle"
                                 id="nav-toggle"
-                                onClick={() => toggleMenu("app-root")}
+                                onClick={() => toggleMenu("navbar", "main-content")}
                             >
                                 <FiMenu />
                             </div>
