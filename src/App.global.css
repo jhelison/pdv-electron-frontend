@@ -39,3 +39,12 @@
     transition: 0.5s;
     overflow: hidden;
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray-color);
+    border-radius: 2px;
+}
