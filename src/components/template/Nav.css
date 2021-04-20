@@ -25,7 +25,6 @@
     grid-template-columns: max-content max-content;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
 }
 .nav-logo {
     color: var(--white-color);
@@ -46,6 +45,7 @@
     transition: .3s;
     cursor: pointer;
     transition: 0;
+    padding: 0;
 }
 
 .nav-link:hover {

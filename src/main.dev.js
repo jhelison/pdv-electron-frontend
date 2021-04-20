@@ -92,14 +92,19 @@ const buildTray = () => {
 
     const contextMenu = Menu.buildFromTemplate([
         {
-            label: "Show",
+            label: "Mostrar",
             type: "normal",
             click: () => mainWindow.show()
         },
         {
-            label: "Hide",
+            label: "Esconder",
             type: "normal",
             click: () => mainWindow.hide()
+        },
+        {
+            label: "Sair",
+            type: "normal",
+            click: () => mainWindow.close()
         },
     ])
     tray = new Tray(iconPath)

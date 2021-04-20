@@ -7,6 +7,7 @@ import { BsClockHistory } from "react-icons/bs"
 import { FiSettings } from "react-icons/fi"
 import { FiMenu } from "react-icons/fi"
 import { FiLogOut } from "react-icons/fi"
+import { FiInfo } from "react-icons/fi"
 import { BsTerminal } from "react-icons/bs"
 
 var window = remote.getCurrentWindow()
@@ -51,7 +52,7 @@ export default (props) => {
                         </div>
                     </div>
 
-                    <div className="nav-list">
+                    <div>
                         <a
                             href="#"
                             className="nav-link active"
@@ -99,6 +100,17 @@ export default (props) => {
                 </div>
 
                 <div>
+                    <a
+                        href="#/about"
+                        className="nav-link"
+                        onClick={(e) => changeSelected(e.currentTarget)}
+                    >
+                        <div className="nav-link-icon">
+                            <FiInfo />
+                        </div>
+                        <span className="nav-name">Sobre</span>
+                    </a>
+
                     <a
                         href="#/configuration"
                         className="nav-link"

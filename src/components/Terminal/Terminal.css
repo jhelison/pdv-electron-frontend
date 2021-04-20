@@ -7,3 +7,7 @@
     white-space: pre-line;
     text-align: left;
 }
+
+.content-card pre {
+    color: var(--white-color);
+}
