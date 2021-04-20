@@ -13,7 +13,7 @@ export default (props) => {
     }
 
     const closeWindow = () => {
-        window.close()
+        window.hide()
     }
 
     return (
