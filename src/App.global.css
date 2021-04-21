@@ -1,4 +1,5 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/status-indicator/styles.css";
 
 @import "../assets/fonts/stylesheet.css";
 
@@ -8,6 +9,7 @@
 @import "./components/template/Nav.css";
 
 @import "./components/Terminal/Terminal.css";
+@import "./components/Users/Users.css";
 
 :root {
     --header-height: 30px;
@@ -49,4 +51,10 @@
 ::-webkit-scrollbar-thumb {
     background: var(--gray-color);
     border-radius: 2px;
+}
+
+.card {
+    background: var(--bg-color);
+    color: var(--white-color);
+    padding: .5rem;
 }

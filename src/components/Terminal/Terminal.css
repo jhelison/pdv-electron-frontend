@@ -1,13 +1,25 @@
-.content-card {
-    background-color: var(--bg-color);
-    border-radius: 5px;
-    padding: 1rem;
-    height: 500px;
+.terminal-card {
+    height: 465px;
     overflow: auto;
     white-space: pre-line;
     text-align: left;
 }
 
-.content-card pre {
+.card pre {
     color: var(--white-color);
+}
+
+.terminal-status-card {
+    margin-bottom: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.terminal-status-card .badge {
+    display: flex;
+    justify-content: center;
+    flex-direction: center;
+    font-size: 1rem;
+    width: 70px;
 }

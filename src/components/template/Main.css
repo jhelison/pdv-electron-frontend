@@ -9,6 +9,7 @@ main.content {
     top: var(--header-height);
     margin-bottom: var(--footer-height);
     left: var(--aside-width-small);
+    padding: 2rem;
 }
 
 main.expand-left-margin {
@@ -16,16 +17,12 @@ main.expand-left-margin {
     width: calc(100vw - var(--aside-width-big));
 }
 
-.main-content-body {
-    padding: 2rem;
-}
-
 main.content h4 {
     font-weight: 400;
 }
 
 .children-content {
-    padding-top: 1.5rem;
+    padding-top: 1rem;
 }
 
 .main-content-title {

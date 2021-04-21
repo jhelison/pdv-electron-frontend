@@ -156,7 +156,7 @@ export default (props) => {
 
             <div className="modal" tabIndex="-1" id="exit-modal">
                 <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
+                    <div className="modal-content bg-dark text-light">
                         <div className="modal-header">
                             <h5 className="modal-title">Sair</h5>
                         </div>
@@ -169,16 +169,16 @@ export default (props) => {
                         <div className="modal-footer">
                             <button
                                 type="button"
-                                className="btn btn-secondary"
+                                className="btn btn-secondary btn-sm"
                                 data-bs-dismiss="modal"
                                 onClick={hideCloseModal}
                             >
                                 Cancelar
                             </button>
-                            <button type="button" className="btn btn-warning" onClick={hideWindow}>
+                            <button type="button" className="btn btn-warning btn-sm" onClick={hideWindow}>
                                 Minimizar
                             </button>
-                            <button type="button" className="btn btn-danger" onClick={closeWindow}>
+                            <button type="button" className="btn btn-danger btn-sm" onClick={closeWindow}>
                                 Sair
                             </button>
                         </div>
