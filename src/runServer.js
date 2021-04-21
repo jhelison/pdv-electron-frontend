@@ -1,7 +1,6 @@
 let output = ""
 
-const appPath =
-    "C:\\Users\\jheli\\Documents\\programming-projects\\PDV\\pdv-electron-frontend\\dist\\app\\app.exe"
+const appPath = require('path').resolve(__dirname, "../assets/server/app") + "\\app.exe"
 
 const child = require("child_process").execFile(appPath, null, (err) => {
     output += err.message
