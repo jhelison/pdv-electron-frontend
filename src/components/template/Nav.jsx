@@ -10,7 +10,12 @@ import { FiLogOut } from "react-icons/fi"
 import { FiInfo } from "react-icons/fi"
 import { BsTerminal } from "react-icons/bs"
 
+import { FiX } from "react-icons/fi"
+
+import { Modal } from "bootstrap"
+
 var window = remote.getCurrentWindow()
+var exitModal = null
 
 export default (props) => {
     const toggleMenu = (navId, mainId) => {
@@ -27,14 +32,27 @@ export default (props) => {
         ele.classList.add("active")
 
         const nav = document.getElementById("navbar")
-        if(nav.classList.contains("expand-nav")){
+        if (nav.classList.contains("expand-nav")) {
             toggleMenu("navbar", "main-content")
         }
+    }
+
+    const showCloseModal = () => {
+        exitModal = new Modal(document.getElementById("exit-modal"))
+        exitModal.toggle()
+    }
+    const hideCloseModal = () => {
+        exitModal.hide()
+    }
+
+    const hideWindow = () => {
+        window.hide()
     }
 
     const closeWindow = () => {
         window.close()
     }
+
 
     return (
         <aside className="menu-area" id="navbar">
@@ -45,7 +63,9 @@ export default (props) => {
                             <div
                                 className="nav-toggle"
                                 id="nav-toggle"
-                                onClick={() => toggleMenu("navbar", "main-content")}
+                                onClick={() =>
+                                    toggleMenu("navbar", "main-content")
+                                }
                             >
                                 <FiMenu />
                             </div>
@@ -123,15 +143,46 @@ export default (props) => {
                     </a>
 
                     <a
-                        href="#"
                         className="nav-link nav-link-exit"
-                        onClick={closeWindow}
+                        onClick={showCloseModal}
                     >
                         <div className="nav-link-icon">
                             <FiLogOut />
                         </div>
                         <span className="nav-name">Sair</span>
                     </a>
+                </div>
+            </div>
+
+            <div className="modal" tabIndex="-1" id="exit-modal">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Sair</h5>
+                        </div>
+                        <div className="modal-body">
+                            <p>
+                                Isso encerra a atividade do servidor e fechará o
+                                APP
+                            </p>
+                        </div>
+                        <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                                onClick={hideCloseModal}
+                            >
+                                Cancelar
+                            </button>
+                            <button type="button" className="btn btn-warning" onClick={hideWindow}>
+                                Minimizar
+                            </button>
+                            <button type="button" className="btn btn-danger" onClick={closeWindow}>
+                                Sair
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </aside>
