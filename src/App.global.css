@@ -10,6 +10,7 @@
 
 @import "./components/Terminal/Terminal.css";
 @import "./components/Users/Users.css";
+@import "./components/Home/Home.css";
 
 :root {
     --header-height: 30px;

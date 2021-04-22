@@ -36,7 +36,7 @@ export default (props) => {
             subtitle="Veja o estado atual do servidor"
             icon={<BsTerminal />}
         >
-            <div className="card terminal-status-card">
+            <div className="card terminal-status-card mb-3">
                 <span>Status atual do servidor</span>
                 {getServerStatus(true)}
             </div>

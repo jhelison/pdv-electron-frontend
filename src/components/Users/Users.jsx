@@ -5,24 +5,20 @@ import { FiUsers } from "react-icons/fi"
 import { FiEdit } from "react-icons/fi"
 import { FiTrash } from "react-icons/fi"
 
+import { Modal } from "bootstrap"
+
+var editUserModal = null
+var deleteUserModal = null
+
 const usersData = [
     [
         "10/12/2021",
-        "Jhelison Gabriel Lima Uchoa Big Ttext",
-        "Samsung",
+        "Jhelison Gabriel Lima Uchoa Big Ttext even bigger!",
+        "Samsung Big text samsung even bigger!",
         "Em espera",
     ],
     ["10/12/2021", "Mark", "Otto", "Liberado"],
     ["10/12/2021", "Mark", "Otto", "Bloqueado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
     ["10/12/2021", "Mark", "Otto", "Liberado"],
     ["10/12/2021", "Mark", "Otto", "Liberado"],
     ["10/12/2021", "Mark", "Otto", "Liberado"],
@@ -39,7 +35,9 @@ export default (props) => {
                         <th scope="col">Nome do perfil</th>
                         <th scope="col">Modelo to telefone</th>
                         <th scope="col">Status</th>
-                        <th scope="col" className="text-right">Ações</th>
+                        <th scope="col" className="text-right">
+                            Ações
+                        </th>
                     </tr>
                 </thead>
 
@@ -80,12 +78,14 @@ export default (props) => {
                                     <button
                                         type="button"
                                         className="btn btn-outline-warning btn-sm mr-1"
+                                        onClick={showEditUserModal}
                                     >
                                         <FiEdit />
                                     </button>
                                     <button
                                         type="button"
                                         className="btn btn-outline-danger btn-sm"
+                                        onClick={showDeleteUserModal}
                                     >
                                         <FiTrash />
                                     </button>
@@ -98,6 +98,24 @@ export default (props) => {
         )
     }
 
+    //User Edit modal functions
+    const showEditUserModal = () => {
+        editUserModal = new Modal(document.getElementById("edit-user-modal"))
+        editUserModal.show()
+    }
+    const hideEditUserModal = () => {
+        editUserModal.hide()
+    }
+
+    //User delete modal funcions
+    const showDeleteUserModal = () => {
+        deleteUserModal = new Modal(document.getElementById("delete-user-modal"))
+        deleteUserModal.show()
+    }
+    const hideDeleteUserModal = () => {
+        deleteUserModal.hide()
+    }
+
     return (
         <Main
             title="Usuários"
@@ -105,6 +123,71 @@ export default (props) => {
             icon={<FiUsers />}
         >
             <div className="card user-card">{buildTable()}</div>
+
+            {/* Edit User modal */}
+            <div className="modal fade" tabIndex="-1" id="edit-user-modal">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content bg-dark text-light">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Alteração de usuário</h5>
+                        </div>
+                        <div className="modal-body">
+                            <p>
+                                Isso encerra a atividade do servidor e fechará o
+                                APP
+                            </p>
+                        </div>
+                        <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-secondary btn-sm"
+                                onClick={hideEditUserModal}
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-success btn-sm"
+                            >
+                                Salvar alterações
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Edit user modal end */}
+
+            {/* Delete User modal */}
+            <div className="modal fade" tabIndex="-1" id="delete-user-modal">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content bg-dark text-light">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Exclusão</h5>
+                        </div>
+                        <div className="modal-body">
+                            <p>
+                                Você tem certeza que deseja excluir o usuário?
+                            </p>
+                        </div>
+                        <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-secondary btn-sm"
+                                onClick={hideDeleteUserModal}
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-danger btn-sm"
+                            >
+                                Excluir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Delete User modal end */}
         </Main>
     )
 }

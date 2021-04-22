@@ -18,7 +18,9 @@ var window = remote.getCurrentWindow()
 var exitModal = null
 
 export default (props) => {
-    const toggleMenu = (navId, mainId) => {
+
+    //Expand Menu
+    const expandNav = (navId, mainId) => {
         console.log("CLICKED")
         const nav = document.getElementById(navId)
         const main = document.getElementById(mainId)
@@ -33,10 +35,11 @@ export default (props) => {
 
         const nav = document.getElementById("navbar")
         if (nav.classList.contains("expand-nav")) {
-            toggleMenu("navbar", "main-content")
+            expandNav("navbar", "main-content")
         }
     }
 
+    //Modal Functions
     const showCloseModal = () => {
         exitModal = new Modal(document.getElementById("exit-modal"))
         exitModal.toggle()
@@ -45,6 +48,7 @@ export default (props) => {
         exitModal.hide()
     }
 
+    //Window controll functions
     const hideWindow = () => {
         window.hide()
     }
@@ -64,7 +68,7 @@ export default (props) => {
                                 className="nav-toggle"
                                 id="nav-toggle"
                                 onClick={() =>
-                                    toggleMenu("navbar", "main-content")
+                                    expandNav("navbar", "main-content")
                                 }
                             >
                                 <FiMenu />
@@ -154,7 +158,7 @@ export default (props) => {
                 </div>
             </div>
 
-            <div className="modal" tabIndex="-1" id="exit-modal">
+            <div className="modal fade" tabIndex="-1" id="exit-modal">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content bg-dark text-light">
                         <div className="modal-header">
