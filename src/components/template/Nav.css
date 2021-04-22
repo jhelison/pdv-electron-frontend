@@ -12,14 +12,6 @@
     width: var(--aside-width-big);
 }
 
-.nav {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-}
-
 .nav-brand {
     display: grid;
     grid-template-columns: max-content max-content;
@@ -37,7 +29,7 @@
     color: var(--white-color);
 }
 
-.nav-link {
+.aside-nav-link {
     display: grid;
     grid-template-columns: var(--aside-width-small) max-content;
     align-items: center;
@@ -48,12 +40,12 @@
     padding: 0;
 }
 
-.nav-link:hover {
+.aside-nav-link:hover {
     color: var(--white-color);
     transition: 0s;
 }
 
-.nav-link:active {
+.aside-nav-link:active {
     color: var(--white-color);
     border-left: 3px solid var(--first-color);
     transition: 0s;

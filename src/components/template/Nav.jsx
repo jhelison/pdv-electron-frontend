@@ -29,7 +29,7 @@ export default (props) => {
     }
 
     const changeSelected = (ele) => {
-        const navLinks = document.querySelectorAll(".nav-link")
+        const navLinks = document.querySelectorAll(".aside-nav-link")
         navLinks.forEach((l) => l.classList.remove("active"))
         ele.classList.add("active")
 
@@ -60,9 +60,9 @@ export default (props) => {
 
     return (
         <aside className="menu-area" id="navbar">
-            <div className="nav">
+            <div className="h-100 d-flex flex-column justify-content-between">
                 <div>
-                    <div className="nav-link">
+                    <div className="aside-nav-link">
                         <div className="nav-link-icon">
                             <div
                                 className="nav-toggle"
@@ -79,7 +79,7 @@ export default (props) => {
                     <div>
                         <a
                             href="#"
-                            className="nav-link active"
+                            className="aside-nav-link active"
                             onClick={(e) => changeSelected(e.currentTarget)}
                         >
                             <div className="nav-link-icon">
@@ -90,7 +90,7 @@ export default (props) => {
 
                         <a
                             href="#/users"
-                            className="nav-link"
+                            className="aside-nav-link"
                             onClick={(e) => changeSelected(e.currentTarget)}
                         >
                             <div className="nav-link-icon">
@@ -101,7 +101,7 @@ export default (props) => {
 
                         <a
                             href="#/terminal"
-                            className="nav-link"
+                            className="aside-nav-link"
                             onClick={(e) => changeSelected(e.currentTarget)}
                         >
                             <div className="nav-link-icon">
@@ -112,7 +112,7 @@ export default (props) => {
 
                         <a
                             href="#/acesslog"
-                            className="nav-link"
+                            className="aside-nav-link"
                             onClick={(e) => changeSelected(e.currentTarget)}
                         >
                             <div className="nav-link-icon">
@@ -126,7 +126,7 @@ export default (props) => {
                 <div>
                     <a
                         href="#/about"
-                        className="nav-link"
+                        className="aside-nav-link"
                         onClick={(e) => changeSelected(e.currentTarget)}
                     >
                         <div className="nav-link-icon">
@@ -137,7 +137,7 @@ export default (props) => {
 
                     <a
                         href="#/configuration"
-                        className="nav-link"
+                        className="aside-nav-link"
                         onClick={(e) => changeSelected(e.currentTarget)}
                     >
                         <div className="nav-link-icon">
@@ -147,7 +147,7 @@ export default (props) => {
                     </a>
 
                     <a
-                        className="nav-link nav-link-exit"
+                        className="aside-nav-link nav-link-exit"
                         onClick={showCloseModal}
                     >
                         <div className="nav-link-icon">
