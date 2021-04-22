@@ -67,7 +67,7 @@ export default (props) => {
                                     <div className="col-8 d-flex justify-content-center align-items-center flex-column">
                                         <div>
                                             <h6>Status Servidor</h6>
-                                            <h1>Ativo</h1>
+                                            <h1 className="text-success">Ativo</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@ export default (props) => {
                 </div>
                 <div className="row mt-3">
                     <div className="col-7">
-                        <div className="card">
+                        <div className="card card-qr d-flex justify-content-between align-items-center">
 
                         </div>
                     </div>

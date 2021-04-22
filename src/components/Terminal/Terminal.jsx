@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import Main from "../template/Main"
 
-import { FiCheck } from "react-icons/fi";
-import { FiX } from "react-icons/fi";
+import { FiCheck } from "react-icons/fi"
+import { FiX } from "react-icons/fi"
 
 import { BsTerminal } from "react-icons/bs"
 
@@ -24,12 +24,21 @@ export default (props) => {
     }
 
     const getServerStatus = (statusBlueprint) => {
-        if(statusBlueprint){
-            return <span class="badge badge-success"><FiCheck /></span>
+        if (statusBlueprint) {
+            return (
+                <span class="badge badge-success d-flex align-items-center">
+                    <FiCheck />
+                    <small className="ml-1">356 ms</small>
+                </span>
+            )
         }
-        return <span class="badge badge-danger"><FiX /></span>
+        return (
+            <span class="badge badge-danger">
+                <FiX />
+            </span>
+        )
     }
-    
+
     return (
         <Main
             title="Terminal"

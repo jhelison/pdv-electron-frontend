@@ -22,3 +22,7 @@
     font-size: 1rem;
     width: 70px;
 }
+
+.terminal-status-card .badge {
+    width: 100px;
+}

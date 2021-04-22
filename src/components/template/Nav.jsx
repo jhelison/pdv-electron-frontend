@@ -160,7 +160,7 @@ export default (props) => {
 
             <div className="modal fade" tabIndex="-1" id="exit-modal">
                 <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content bg-dark text-light">
+                    <div className="modal-content text-dark">
                         <div className="modal-header">
                             <h5 className="modal-title">Sair</h5>
                         </div>

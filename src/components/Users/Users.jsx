@@ -4,6 +4,8 @@ import Main from "../template/Main"
 import { FiUsers } from "react-icons/fi"
 import { FiEdit } from "react-icons/fi"
 import { FiTrash } from "react-icons/fi"
+import { FiLock } from "react-icons/fi"
+import { FiUnlock } from "react-icons/fi"
 
 import { Modal } from "bootstrap"
 
@@ -13,7 +15,7 @@ var deleteUserModal = null
 const usersData = [
     [
         "10/12/2021",
-        "Jhelison Gabriel Lima Uchoa Big Ttext even bigger!",
+        "Jhelison Gabriel Lima Uchoa Big Ttext even bigger",
         "Samsung Big text samsung even bigger!",
         "Em espera",
     ],
@@ -57,6 +59,27 @@ export default (props) => {
             return <status-indicator negative></status-indicator>
         }
 
+        const getLockButton = (status) => {
+            if (status === "Liberado" ) {
+                return (
+                    <button
+                        type="button"
+                        className="btn btn-outline-secondary btn-sm mr-1"
+                    >
+                        <FiLock />
+                    </button>
+                )
+            }
+            return (
+                <button
+                    type="button"
+                    className="btn btn-outline-success btn-sm mr-1"
+                >
+                    <FiUnlock />
+                </button>
+            )
+        }
+
         return (
             <tbody>
                 {usersData.map((val, index) => {
@@ -75,6 +98,7 @@ export default (props) => {
                             </td>
                             <td>
                                 <div className="d-flex justify-content-end">
+                                    {getLockButton(val[3])}
                                     <button
                                         type="button"
                                         className="btn btn-outline-warning btn-sm mr-1"
@@ -109,7 +133,9 @@ export default (props) => {
 
     //User delete modal funcions
     const showDeleteUserModal = () => {
-        deleteUserModal = new Modal(document.getElementById("delete-user-modal"))
+        deleteUserModal = new Modal(
+            document.getElementById("delete-user-modal")
+        )
         deleteUserModal.show()
     }
     const hideDeleteUserModal = () => {
@@ -126,15 +152,139 @@ export default (props) => {
 
             {/* Edit User modal */}
             <div className="modal fade" tabIndex="-1" id="edit-user-modal">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content bg-dark text-light">
+                <div className="modal-dialog modal-lg modal-dialog-centered">
+                    <div className="modal-content text-dark">
                         <div className="modal-header">
-                            <h5 className="modal-title">Alteração de usuário</h5>
+                            <h5 className="modal-title">
+                                Alteração de usuário - dced34dcb17e39f4 (Android
+                                - samsung)
+                            </h5>
                         </div>
                         <div className="modal-body">
                             <p>
-                                Isso encerra a atividade do servidor e fechará o
-                                APP
+                                <form>
+                                    <h6>Informações Basicas</h6>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-4">
+                                            <label htmlFor="inputEmail">
+                                                Nome do perfil
+                                            </label>
+                                            <input
+                                                type="email"
+                                                className="form-control form-control-sm"
+                                                id="inputEmail"
+                                                placeholder="Perfil"
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-4">
+                                            <label for="inputState">
+                                                Vendedor
+                                            </label>
+                                            <select
+                                                id="inputState"
+                                                className="form-control form-control-sm"
+                                            >
+                                                <option selected>
+                                                    Escolha
+                                                </option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                        <div className="form-group col-md-4">
+                                            <label htmlFor="inputEmail">
+                                                Data Admissional
+                                            </label>
+                                            <input
+                                                type="email"
+                                                className="form-control form-control-sm"
+                                                id="inputEmail"
+                                                placeholder="Data"
+                                            />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <h6>Informações Detalhadas</h6>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-3">
+                                            <label htmlFor="inputEmail">
+                                                Salário
+                                            </label>
+                                            <input
+                                                type="email"
+                                                className="form-control form-control-sm"
+                                                id="inputEmail"
+                                                placeholder="R$ 00.00"
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-3">
+                                            <label htmlFor="inputEmail">
+                                                Objetivo comissão
+                                            </label>
+                                            <input
+                                                type="email"
+                                                className="form-control form-control-sm"
+                                                id="inputEmail"
+                                                placeholder="R$ 00.00"
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-3">
+                                            <label htmlFor="inputEmail">
+                                                Multi. comissão
+                                            </label>
+                                            <input
+                                                type="email"
+                                                className="form-control form-control-sm"
+                                                id="inputEmail"
+                                                placeholder="1.00"
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-3">
+                                            <label htmlFor="inputEmail">
+                                                Desconto máximo
+                                            </label>
+                                            <input
+                                                type="email"
+                                                className="form-control form-control-sm"
+                                                id="inputEmail"
+                                                placeholder="0.00 %"
+                                            />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <h6>Informações Adicionais</h6>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-6">
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    id="gridCheck1"
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="gridCheck1"
+                                                >
+                                                    Tem acesso
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    id="gridCheck"
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="gridCheck"
+                                                >
+                                                    Pode ver todos os orçamentos
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </p>
                         </div>
                         <div className="modal-footer">
@@ -160,7 +310,7 @@ export default (props) => {
             {/* Delete User modal */}
             <div className="modal fade" tabIndex="-1" id="delete-user-modal">
                 <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content bg-dark text-light">
+                    <div className="modal-content text-dark">
                         <div className="modal-header">
                             <h5 className="modal-title">Exclusão</h5>
                         </div>
