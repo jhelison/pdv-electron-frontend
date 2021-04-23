@@ -5,6 +5,7 @@ import { BsClockHistory } from "react-icons/bs"
 
 const acessData = [
     ["10/12/2021", "Jhelison Uchoa", "Orçamento", "Adicionado"],
+    ["10/12/2021", "Jhelison Uchoa", "Orçamento", "Visualizado"],
     ["10/12/2021", "Mark", "Clientes", "Atualizado"],
     ["10/12/2021", "Mark", "Orçamento", "Deletado"],
     ["10/12/2021", "Mark", "Vendas", "Atualizado"],
@@ -42,6 +43,9 @@ export default (props) => {
             }
             if (text === "Atualizado") {
                 return <div class="alert-custom alert-alert-custom">{text}</div>
+            }
+            if (text === "Visualizado") {
+                return <div class="alert-custom alert-info-custom">{text}</div>
             }
             return <div class="alert-custom alert-danger-custom">{text}</div>
         }
