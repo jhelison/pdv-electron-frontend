@@ -148,6 +148,8 @@ export default (props) => {
             subtitle="Gerencie quem pode acessar o aplicativo"
             icon={<FiUsers />}
         >
+            <div className="card mb-3"></div>
+
             <div className="card user-card">{buildTable()}</div>
 
             {/* Edit User modal */}
