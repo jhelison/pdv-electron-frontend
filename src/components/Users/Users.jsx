@@ -6,6 +6,7 @@ import { FiEdit } from "react-icons/fi"
 import { FiTrash } from "react-icons/fi"
 import { FiLock } from "react-icons/fi"
 import { FiUnlock } from "react-icons/fi"
+import { FiPlus } from "react-icons/fi"
 
 import { Modal } from "bootstrap"
 
@@ -148,7 +149,9 @@ export default (props) => {
             subtitle="Gerencie quem pode acessar o aplicativo"
             icon={<FiUsers />}
         >
-            <div className="card mb-3"></div>
+            <div className="small-card mb-3 d-flex justify-content-end">
+                <button type="button" className="btn btn-success btn-sm w-25 align-self-end">Adicionar novo telefone <FiPlus /></button>
+            </div>
 
             <div className="card user-card">{buildTable()}</div>
 

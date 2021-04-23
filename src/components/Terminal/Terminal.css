@@ -1,5 +1,5 @@
 .terminal-card {
-    height: 465px;
+    height: 455px;
     overflow: auto;
     white-space: pre-line;
     text-align: left;
@@ -7,22 +7,4 @@
 
 .card pre {
     color: var(--white-color);
-}
-
-.terminal-status-card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.terminal-status-card .badge {
-    display: flex;
-    justify-content: center;
-    flex-direction: center;
-    font-size: 1rem;
-    width: 70px;
-}
-
-.terminal-status-card .badge {
-    width: 100px;
 }

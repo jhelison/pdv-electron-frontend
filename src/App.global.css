@@ -59,3 +59,11 @@
     color: var(--white-color);
     padding: .5rem;
 }
+
+.small-card {
+    background: var(--bg-color);
+    color: var(--white-color);
+    padding: .5rem;
+    height: 50px;
+    border-radius: 5px;
+}

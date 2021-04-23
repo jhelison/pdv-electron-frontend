@@ -26,16 +26,11 @@ export default (props) => {
     const getServerStatus = (statusBlueprint) => {
         if (statusBlueprint) {
             return (
-                <span class="badge badge-success d-flex align-items-center">
-                    <FiCheck />
-                    <small className="ml-1">356 ms</small>
-                </span>
+                <button type="button" className="btn btn-success btn-sm w-25 align-self-end" disabled><FiCheck /> 356 ms</button>
             )
         }
         return (
-            <span class="badge badge-danger">
-                <FiX />
-            </span>
+            <button type="button" className="btn btn-danger btn-sm w-25 align-self-end"><FiX /> Pressione para reinicializar</button>
         )
     }
 
@@ -45,7 +40,7 @@ export default (props) => {
             subtitle="Veja o estado atual do servidor"
             icon={<BsTerminal />}
         >
-            <div className="card terminal-status-card mb-3">
+            <div className="small-card mb-3 d-flex justify-content-between align-items-center flex-row">
                 <span>Status atual do servidor</span>
                 {getServerStatus(true)}
             </div>
