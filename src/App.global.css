@@ -67,3 +67,26 @@
     height: 50px;
     border-radius: 5px;
 }
+
+.alert-custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    border-radius: 5px;
+}
+.alert-success-custom {
+    background-color: #8fd9a8;
+    color: rgb(45, 122, 96);
+    font-weight: 500;
+}
+.alert-alert-custom {
+    background-color: #fed049;
+    color: #977b27;
+    font-weight: 500;
+}
+.alert-danger-custom {
+    background-color: #fb3640;
+    color: #912026;
+    font-weight: 500;
+}
