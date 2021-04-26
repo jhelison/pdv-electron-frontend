@@ -38,16 +38,16 @@ export default (props) => {
         const getTypeOfChange = (text) => {
             if (text === "Adicionado") {
                 return (
-                    <div class="alert-custom alert-success-custom">{text}</div>
+                    <div className="alert-custom alert-success-custom">{text}</div>
                 )
             }
             if (text === "Atualizado") {
-                return <div class="alert-custom alert-alert-custom">{text}</div>
+                return <div className="alert-custom alert-alert-custom">{text}</div>
             }
             if (text === "Visualizado") {
-                return <div class="alert-custom alert-info-custom">{text}</div>
+                return <div className="alert-custom alert-info-custom">{text}</div>
             }
-            return <div class="alert-custom alert-danger-custom">{text}</div>
+            return <div className="alert-custom alert-danger-custom">{text}</div>
         }
 
         return (

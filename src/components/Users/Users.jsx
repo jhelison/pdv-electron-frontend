@@ -259,14 +259,14 @@ export default (props) => {
                                     <h6>Informações Adicionais</h6>
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
-                                            <div class="form-check">
+                                            <div className="form-check">
                                                 <input
-                                                    class="form-check-input"
+                                                    className="form-check-input"
                                                     type="checkbox"
                                                     id="gridCheck1"
                                                 />
                                                 <label
-                                                    class="form-check-label"
+                                                    className="form-check-label"
                                                     for="gridCheck1"
                                                 >
                                                     Tem acesso
@@ -274,14 +274,14 @@ export default (props) => {
                                             </div>
                                         </div>
                                         <div className="form-group col-md-6">
-                                            <div class="form-check">
+                                            <div className="form-check">
                                                 <input
-                                                    class="form-check-input"
+                                                    className="form-check-input"
                                                     type="checkbox"
                                                     id="gridCheck"
                                                 />
                                                 <label
-                                                    class="form-check-label"
+                                                    className="form-check-label"
                                                     for="gridCheck"
                                                 >
                                                     Pode ver todos os orçamentos
