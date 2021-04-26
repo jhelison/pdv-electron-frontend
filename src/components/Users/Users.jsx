@@ -10,8 +10,11 @@ import { FiPlus } from "react-icons/fi"
 
 import { Modal } from "bootstrap"
 
+import QRCode from "react-qr-code"
+
 var editUserModal = null
 var deleteUserModal = null
+var newUserModal = null
 
 const usersData = [
     [
@@ -61,7 +64,7 @@ export default (props) => {
         }
 
         const getLockButton = (status) => {
-            if (status === "Liberado" ) {
+            if (status === "Liberado") {
                 return (
                     <button
                         type="button"
@@ -143,6 +146,15 @@ export default (props) => {
         deleteUserModal.hide()
     }
 
+    //New user modal functions
+    const showNewUserModal = () => {
+        newUserModal = new Modal(document.getElementById("new-user-modal"))
+        newUserModal.show()
+    }
+    const hideNewUserModal = () => {
+        newUserModal.hide()
+    }
+
     return (
         <Main
             title="Usuários"
@@ -150,7 +162,13 @@ export default (props) => {
             icon={<FiUsers />}
         >
             <div className="small-card mb-3 d-flex justify-content-end">
-                <button type="button" className="btn btn-success btn-sm w-25 align-self-end">Adicionar novo telefone <FiPlus /></button>
+                <button
+                    type="button"
+                    className="btn btn-success btn-sm w-25 align-self-end"
+                    onClick={showNewUserModal}
+                >
+                    Adicionar novo telefone <FiPlus />
+                </button>
             </div>
 
             <div className="card user-card">{buildTable()}</div>
@@ -343,6 +361,46 @@ export default (props) => {
                 </div>
             </div>
             {/* Delete User modal end */}
+
+            {/* Add new user modal */}
+            <div className="modal fade" tabIndex="-1" id="new-user-modal">
+                <div className="modal-dialog modal-lg modal-dialog-centered">
+                    <div className="modal-content text-dark">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Novo usuário</h5>
+                        </div>
+                        <div className="modal-body">
+                            <p>
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <div>
+                                        <QRCode
+                                            value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                            size={250}
+                                        />
+                                    </div>
+                                    <span className="mr-5 ml-3 text-center">
+                                        Ou insira manualmente
+                                    </span>
+                                    <ul>
+                                        <li>Servidor=Teste</li>
+                                        <li>IP=107.1.2.100:5000</li>
+                                    </ul>
+                                </div>
+                            </p>
+                        </div>
+                        <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-secondary btn-sm"
+                                onClick={hideNewUserModal}
+                            >
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Add new user modal */}
         </Main>
     )
 }
