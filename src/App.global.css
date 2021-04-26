@@ -1,5 +1,6 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "../node_modules/status-indicator/styles.css";
+@import "../node_modules/react-datepicker/dist/react-datepicker.css";
 
 @import "../assets/fonts/stylesheet.css";
 
@@ -94,4 +95,8 @@
     border: 1px solid #51c4d3;
     color: #51c4d3;
     font-weight: 500;
+}
+
+.w-15 {
+    width: 15%;
 }
