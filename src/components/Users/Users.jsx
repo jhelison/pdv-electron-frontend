@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Main from "../template/Main"
 
 import { FiUsers } from "react-icons/fi"
@@ -11,27 +11,25 @@ import { FiPlus } from "react-icons/fi"
 import { Modal } from "bootstrap"
 
 import QRCode from "react-qr-code"
+import Axios from "axios"
+import moment from "moment"
+import "moment/locale/pt-br"
+moment.locale("pt-br")
 
 var editUserModal = null
 var deleteUserModal = null
 var newUserModal = null
 
-const usersData = [
-    [
-        "10/12/2021",
-        "Jhelison Gabriel Lima Uchoa Big Ttext even bigger",
-        "Samsung Big text samsung even bigger!",
-        "Em espera",
-    ],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Bloqueado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-    ["10/12/2021", "Mark", "Otto", "Liberado"],
-]
+const url = "http://localhost:5000/"
 
 export default (props) => {
+    const [users, setUsers] = useState([])
+    const [selectedUser, setSelectedUser] = useState({})
+
+    useEffect(() => {
+        getUsers()
+    }, [])
+
     const buildTable = () => {
         return (
             <table className="table table-sm">
@@ -86,34 +84,39 @@ export default (props) => {
 
         return (
             <tbody>
-                {usersData.map((val, index) => {
+                {users.map((user, index) => {
                     return (
                         <tr key={index}>
-                            <td>{val[0]}</td>
-                            <td>{val[1]}</td>
-                            <td>{val[2]}</td>
+                            <td>{moment(user.insert_date).calendar()}</td>
+                            <td>{user.profile_name}</td>
+                            <td>{user.phone_model}</td>
                             <td>
                                 <div className="d-flex">
                                     <div className="mr-3">
-                                        {getStatusIndicator(val[3])}
+                                        {getStatusIndicator("Liberado")}
                                     </div>
-                                    <span>{val[3]}</span>
+                                    <span>{"Liberado"}</span>
                                 </div>
                             </td>
                             <td>
                                 <div className="d-flex justify-content-end">
-                                    {getLockButton(val[3])}
+                                    {getLockButton("Liberado")}
                                     <button
                                         type="button"
                                         className="btn btn-outline-warning btn-sm mr-1"
-                                        onClick={showEditUserModal}
+                                        onClick={() => {
+                                            setSelectedUser(user)
+                                            showEditUserModal()}}
                                     >
                                         <FiEdit />
                                     </button>
                                     <button
                                         type="button"
                                         className="btn btn-outline-danger btn-sm"
-                                        onClick={showDeleteUserModal}
+                                        onClick={() => {
+                                            setSelectedUser(user)
+                                            showDeleteUserModal()
+                                        }}
                                     >
                                         <FiTrash />
                                     </button>
@@ -155,6 +158,29 @@ export default (props) => {
         newUserModal.hide()
     }
 
+    //Axios functions
+    const getUsers = async () => {
+        try {
+            const res = await Axios.get(url + "users")
+            setUsers(res.data)
+            console.log(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const deleteUser = async (user) => {
+        try {
+            const res = await Axios.delete(url + "user", {
+                data: {
+                    id: user.id
+                }
+            })
+            getUsers()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <Main
             title="Usuários"
@@ -179,8 +205,8 @@ export default (props) => {
                     <div className="modal-content text-dark">
                         <div className="modal-header">
                             <h5 className="modal-title">
-                                Alteração de usuário - dced34dcb17e39f4 (Android
-                                - samsung)
+                                Alteração de usuário - {selectedUser.id} ({selectedUser.platform}
+                                - {selectedUser.phone_model})
                             </h5>
                         </div>
                         <div className="modal-body">
@@ -197,6 +223,7 @@ export default (props) => {
                                                 className="form-control form-control-sm"
                                                 id="inputEmail"
                                                 placeholder="Perfil"
+                                                value={selectedUser.profile_name}
                                             />
                                         </div>
                                         <div className="form-group col-md-4">
@@ -222,6 +249,7 @@ export default (props) => {
                                                 className="form-control form-control-sm"
                                                 id="inputEmail"
                                                 placeholder="Data"
+                                                value={selectedUser.admissional_date}
                                             />
                                         </div>
                                     </div>
@@ -236,7 +264,8 @@ export default (props) => {
                                                 type="email"
                                                 className="form-control form-control-sm"
                                                 id="inputEmail"
-                                                placeholder="R$ 00.00"
+                                                placeholder="R$ 0.00"
+                                                value={selectedUser.salary}
                                             />
                                         </div>
                                         <div className="form-group col-md-3">
@@ -247,7 +276,8 @@ export default (props) => {
                                                 type="email"
                                                 className="form-control form-control-sm"
                                                 id="inputEmail"
-                                                placeholder="R$ 00.00"
+                                                placeholder="R$ 0.00"
+                                                value={selectedUser.comission_objective}
                                             />
                                         </div>
                                         <div className="form-group col-md-3">
@@ -259,6 +289,7 @@ export default (props) => {
                                                 className="form-control form-control-sm"
                                                 id="inputEmail"
                                                 placeholder="1.00"
+                                                value={selectedUser.comission_multiplier}
                                             />
                                         </div>
                                         <div className="form-group col-md-3">
@@ -270,6 +301,7 @@ export default (props) => {
                                                 className="form-control form-control-sm"
                                                 id="inputEmail"
                                                 placeholder="0.00 %"
+                                                value={selectedUser.max_discount}
                                             />
                                         </div>
                                     </div>
@@ -282,6 +314,7 @@ export default (props) => {
                                                     className="form-check-input"
                                                     type="checkbox"
                                                     id="gridCheck1"
+                                                    checked={selectedUser.flag_have_acess}
                                                 />
                                                 <label
                                                     className="form-check-label"
@@ -297,6 +330,7 @@ export default (props) => {
                                                     className="form-check-input"
                                                     type="checkbox"
                                                     id="gridCheck"
+                                                    checked={selectedUser.flag_see_all_budgets}
                                                 />
                                                 <label
                                                     className="form-check-label"
@@ -353,6 +387,10 @@ export default (props) => {
                             <button
                                 type="button"
                                 className="btn btn-danger btn-sm"
+                                onClick={() => {
+                                    deleteUser(selectedUser)
+                                    hideDeleteUserModal()
+                                }}
                             >
                                 Excluir
                             </button>

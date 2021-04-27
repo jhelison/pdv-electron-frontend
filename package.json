@@ -262,6 +262,7 @@
     "history": "^5.0.0",
     "ionicons": "^5.5.1",
     "jquery": "^3.6.0",
+    "moment": "^2.29.1",
     "popper.js": "^1.16.1",
     "python-shell": "^3.0.0",
     "react": "^17.0.1",
