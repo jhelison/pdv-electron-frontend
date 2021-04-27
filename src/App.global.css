@@ -100,3 +100,5 @@
 .w-15 {
     width: 15%;
 }
+
+.no-click {pointer-events: none;}
