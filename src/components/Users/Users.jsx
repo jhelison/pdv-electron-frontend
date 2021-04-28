@@ -10,6 +10,8 @@ import { FiPlus } from "react-icons/fi"
 
 import { Modal } from "bootstrap"
 
+import {CurrencyInput, PercentualInput} from "../MaskedInputs"
+
 import QRCode from "react-qr-code"
 import Axios from "axios"
 import moment from "moment"
@@ -52,21 +54,23 @@ export default (props) => {
 
     const buildTableRows = () => {
         const getStatusIndicator = (status) => {
-            if (status === "Liberado") {
+            if (status) {
                 return <status-indicator positive></status-indicator>
             }
-            if (status === "Em espera") {
-                return <status-indicator pulse></status-indicator>
+            else {
+                return <status-indicator negative pulse></status-indicator>
             }
-            return <status-indicator negative></status-indicator>
         }
 
-        const getLockButton = (status) => {
-            if (status === "Liberado") {
+        const getLockButton = (user) => {
+            if (user.flag_have_acess) {
                 return (
                     <button
                         type="button"
                         className="btn btn-outline-secondary btn-sm mr-1"
+                        onClick={() => {
+                            changeUserAcess(user)
+                        }}
                     >
                         <FiLock />
                     </button>
@@ -76,6 +80,9 @@ export default (props) => {
                 <button
                     type="button"
                     className="btn btn-outline-success btn-sm mr-1"
+                    onClick={() => {
+                        changeUserAcess(user)
+                    }}
                 >
                     <FiUnlock />
                 </button>
@@ -87,20 +94,20 @@ export default (props) => {
                 {users.map((user, index) => {
                     return (
                         <tr key={index}>
-                            <td>{moment(user.insert_date).calendar()}</td>
+                            <td>{moment(user.insert_date).fromNow()}</td>
                             <td>{user.profile_name}</td>
                             <td>{user.phone_model}</td>
                             <td>
                                 <div className="d-flex">
                                     <div className="mr-3">
-                                        {getStatusIndicator("Liberado")}
+                                        {getStatusIndicator(user.flag_have_acess)}
                                     </div>
-                                    <span>{"Liberado"}</span>
+                                    <span>{user.flag_have_acess ? "Liberado" : "Bloqueado"}</span>
                                 </div>
                             </td>
                             <td>
                                 <div className="d-flex justify-content-end">
-                                    {getLockButton("Liberado")}
+                                    {getLockButton(user)}
                                     <button
                                         type="button"
                                         className="btn btn-outline-warning btn-sm mr-1"
@@ -176,6 +183,21 @@ export default (props) => {
                 }
             })
             getUsers()
+            hideDeleteUserModal()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const changeUserAcess = async (user) => {
+        console.log(user)
+        try {
+            const res = await Axios.put(url + "user", {
+                id: user.id,
+                content: {
+                    flag_have_acess: !user.flag_have_acess
+                }
+            })
+            getUsers()
         } catch (error) {
             console.log(error)
         }
@@ -219,11 +241,10 @@ export default (props) => {
                                                 Nome do perfil
                                             </label>
                                             <input
-                                                type="email"
                                                 className="form-control form-control-sm"
-                                                id="inputEmail"
                                                 placeholder="Perfil"
                                                 value={selectedUser.profile_name}
+                                                onChange={e => setSelectedUser(oldState => {return {...oldState, profile_name:e.target.value}})}
                                             />
                                         </div>
                                         <div className="form-group col-md-4">
@@ -245,11 +266,10 @@ export default (props) => {
                                                 Data Admissional
                                             </label>
                                             <input
-                                                type="email"
                                                 className="form-control form-control-sm"
-                                                id="inputEmail"
                                                 placeholder="Data"
                                                 value={selectedUser.admissional_date}
+                                                onChange={e => setSelectedUser(oldState => {return {...oldState, admissional_date:e.target.value}})}
                                             />
                                         </div>
                                     </div>
@@ -260,24 +280,22 @@ export default (props) => {
                                             <label htmlFor="inputEmail">
                                                 Salário
                                             </label>
-                                            <input
-                                                type="email"
+                                            <CurrencyInput
                                                 className="form-control form-control-sm"
-                                                id="inputEmail"
                                                 placeholder="R$ 0.00"
                                                 value={selectedUser.salary}
+                                                onChange={e => setSelectedUser(oldState => {return {...oldState, salary:e.target.value}})}
                                             />
                                         </div>
                                         <div className="form-group col-md-3">
                                             <label htmlFor="inputEmail">
                                                 Objetivo comissão
                                             </label>
-                                            <input
-                                                type="email"
+                                            <CurrencyInput
                                                 className="form-control form-control-sm"
-                                                id="inputEmail"
                                                 placeholder="R$ 0.00"
                                                 value={selectedUser.comission_objective}
+                                                onChange={e => setSelectedUser(oldState => {return {...oldState, comission_objective:e.target.value}})}
                                             />
                                         </div>
                                         <div className="form-group col-md-3">
@@ -285,23 +303,22 @@ export default (props) => {
                                                 Multi. comissão
                                             </label>
                                             <input
-                                                type="email"
                                                 className="form-control form-control-sm"
-                                                id="inputEmail"
                                                 placeholder="1.00"
                                                 value={selectedUser.comission_multiplier}
+                                                onChange={e => setSelectedUser(oldState => {return {...oldState, comission_multiplier:e.target.value}})}
                                             />
                                         </div>
                                         <div className="form-group col-md-3">
                                             <label htmlFor="inputEmail">
                                                 Desconto máximo
                                             </label>
-                                            <input
-                                                type="email"
+                                            <PercentualInput
                                                 className="form-control form-control-sm"
-                                                id="inputEmail"
                                                 placeholder="0.00 %"
                                                 value={selectedUser.max_discount}
+                                                onChange={e => setSelectedUser(oldState => {return {...oldState, max_discount:e.target.value}})}
+                                                onBlur={() => parseFloat(selectedUser.max_discount.substring(0, selectedUser.max_discount.length - 1)) > 100 ? selectedUser.max_discount = 100 : null}
                                             />
                                         </div>
                                     </div>
@@ -315,6 +332,7 @@ export default (props) => {
                                                     type="checkbox"
                                                     id="gridCheck1"
                                                     checked={selectedUser.flag_have_acess}
+                                                    onChange={e => setSelectedUser(oldState => {return {...oldState, flag_have_acess:e.target.checked}})}
                                                 />
                                                 <label
                                                     className="form-check-label"
@@ -331,6 +349,7 @@ export default (props) => {
                                                     type="checkbox"
                                                     id="gridCheck"
                                                     checked={selectedUser.flag_see_all_budgets}
+                                                    onChange={e => setSelectedUser(oldState => {return {...oldState, flag_see_all_budgets:e.target.checked}})}
                                                 />
                                                 <label
                                                     className="form-check-label"
@@ -389,7 +408,6 @@ export default (props) => {
                                 className="btn btn-danger btn-sm"
                                 onClick={() => {
                                     deleteUser(selectedUser)
-                                    hideDeleteUserModal()
                                 }}
                             >
                                 Excluir

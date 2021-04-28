@@ -273,9 +273,11 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-select": "^4.3.0",
+    "react-text-mask": "^5.4.3",
     "regenerator-runtime": "^0.13.5",
     "source-map-support": "^0.5.19",
-    "status-indicator": "^1.0.9"
+    "status-indicator": "^1.0.9",
+    "text-mask-addons": "^3.8.0"
   },
   "devEngines": {
     "node": ">=10.x",
