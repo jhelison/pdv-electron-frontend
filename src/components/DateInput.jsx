@@ -14,7 +14,7 @@ const DateInput = ({ ...inputProps }) => {
             ref={ref}
             placeholder="00/00/0000"
             value={
-                value
+                moment(inputProps.value).format("DD/MM/YYYY")
             }
         />
     ))
@@ -26,6 +26,7 @@ const DateInput = ({ ...inputProps }) => {
 
     return (
         <DatePicker
+            className="form-control form-control-sm"
             customInput={<CustomInput/>}
             locale={ptBR}
             todayButton="Hoje"

@@ -254,7 +254,7 @@ export default (props) => {
                             </h5>
                         </div>
                         <div className="modal-body">
-                            <p>
+                            <div>
                                 <form>
                                     <h6>Informações Basicas</h6>
                                     <div className="form-row">
@@ -283,7 +283,7 @@ export default (props) => {
                                             />
                                         </div>
                                         <div className="form-group col-md-4">
-                                            <label for="sellerSelection">
+                                            <label>
                                                 Vendedor
                                             </label>
                                             <select
@@ -463,7 +463,6 @@ export default (props) => {
                                                 />
                                                 <label
                                                     className="form-check-label"
-                                                    for="gridCheck1"
                                                 >
                                                     Tem acesso
                                                 </label>
@@ -493,7 +492,6 @@ export default (props) => {
                                                 />
                                                 <label
                                                     className="form-check-label"
-                                                    for="gridCheck"
                                                 >
                                                     Pode ver todos os orçamentos
                                                 </label>
@@ -501,7 +499,7 @@ export default (props) => {
                                         </div>
                                     </div>
                                 </form>
-                            </p>
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button
@@ -566,7 +564,7 @@ export default (props) => {
                             <h5 className="modal-title">Novo usuário</h5>
                         </div>
                         <div className="modal-body">
-                            <p>
+                            <div>
                                 <div className="d-flex justify-content-center align-items-center">
                                     <div>
                                         <QRCode
@@ -582,7 +580,7 @@ export default (props) => {
                                         <li>IP=107.1.2.100:5000</li>
                                     </ul>
                                 </div>
-                            </p>
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button

@@ -36,7 +36,7 @@ const options = [
 export default (props) => {
     const [startDate, setStartDate] = useState(new Date())
     const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-        <input className="form-control" type="text" onClick={onClick} ref={ref} placeholder="Default input" value={startDate.getDay() + "/" + startDate.getMonth() + "/" + startDate.getFullYear()}/>
+        <input disabled className="form-control" type="text" onClick={onClick} ref={ref} placeholder="Default input" defaultValue={startDate.getDay() + "/" + startDate.getMonth() + "/" + startDate.getFullYear()}/>
     ))
 
     const buildTable = () => {
