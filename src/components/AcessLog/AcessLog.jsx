@@ -7,6 +7,8 @@ import Select from "react-select"
 import DatePicker, { registerLocale } from "react-datepicker"
 import ptBR from "date-fns/locale/pt-BR"
 
+import DateInput from "../DateInput"
+
 const customStyles = {
     option: (provided, state) => ({
       ...provided,
@@ -53,12 +55,9 @@ export default (props) => {
                     </tr>
                     <tr>
                         <th scope="col" className="w-15">
-                            <DatePicker
+                            <DateInput
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
-                                customInput={<ExampleCustomInput />}
-                                locale={ptBR}
-                                todayButton="Hoje"
                             />
                         </th>
                         <th scope="col">

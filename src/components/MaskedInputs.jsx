@@ -9,8 +9,8 @@ const currencyMaskOptions = {
     thousandsSeparatorSymbol: ",",
     allowDecimal: true,
     decimalSymbol: ".",
-    decimalLimit: 2, // how many digits allowed after the decimal
-    integerLimit: 6, // limit length of integer numbers
+    decimalLimit: 2,
+    integerLimit: 6,
     allowNegative: false,
     allowLeadingZeroes: false,
 }
@@ -21,8 +21,8 @@ const percentualMaskOption = {
     thousandsSeparatorSymbol: ",",
     allowDecimal: true,
     decimalSymbol: ".",
-    decimalLimit: 2, // how many digits allowed after the decimal
-    integerLimit: 3, // limit length of integer numbers
+    decimalLimit: 2,
+    integerLimit: 3,
     allowNegative: false,
     allowLeadingZeroes: false,
 }
