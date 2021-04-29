@@ -7,7 +7,8 @@ import MaskedInput from "react-text-mask"
 const DateInput = ({ ...inputProps }) => {
     const CustomInput = forwardRef(({ value, onClick }, ref) => (
         <input
-            className="form-control form-control-sm"
+            id={inputProps.id}
+            className={inputProps.className}
             type="text"
             mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
             onClick={onClick}
@@ -26,7 +27,6 @@ const DateInput = ({ ...inputProps }) => {
 
     return (
         <DatePicker
-            className="form-control form-control-sm"
             customInput={<CustomInput/>}
             locale={ptBR}
             todayButton="Hoje"

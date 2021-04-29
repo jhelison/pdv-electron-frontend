@@ -26,6 +26,18 @@ const percentualMaskOption = {
     allowNegative: false,
     allowLeadingZeroes: false,
 }
+const decimalNumberMaskOption = {
+    prefix: "",
+    suffix: "",
+    includeThousandsSeparator: true,
+    thousandsSeparatorSymbol: ",",
+    allowDecimal: true,
+    decimalSymbol: ".",
+    decimalLimit: 2,
+    integerLimit: 2,
+    allowNegative: false,
+    allowLeadingZeroes: false,
+}
 
 const CurrencyInput = ({ ...inputProps }) => {
     const currencyMask = createNumberMask(currencyMaskOptions)
@@ -39,4 +51,10 @@ const PercentualInput = ({ ...inputProps }) => {
     return <MaskedInput mask={percentualMask} {...inputProps} />
 }
 
-export { CurrencyInput, PercentualInput }
+const DecimalNumberInput = ({ ...inputProps }) => {
+    const decimalMask = createNumberMask(decimalNumberMaskOption)
+
+    return <MaskedInput mask={decimalMask} {...inputProps} />
+}
+
+export { CurrencyInput, PercentualInput, DecimalNumberInput }

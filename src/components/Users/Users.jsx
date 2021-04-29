@@ -10,7 +10,7 @@ import { FiPlus } from "react-icons/fi"
 
 import { Modal } from "bootstrap"
 
-import { CurrencyInput, PercentualInput } from "../MaskedInputs"
+import { CurrencyInput, PercentualInput, DecimalNumberInput } from "../MaskedInputs"
 import DateInput from "../DateInput"
 
 import QRCode from "react-qr-code"
@@ -215,6 +215,24 @@ export default (props) => {
             console.log(error)
         }
     }
+    const updateUser = async () => {
+        if(!validadeEditUserForm()){
+            return
+        }
+
+        try {
+            const res = await Axios.put(url + "user", {
+                id: selectedUser.id,
+                content: {
+                    ...selectedUser,
+                }
+            })
+            getUsers()
+            hideEditUserModal()
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const getSellers = async () => {
         try {
             const res = await Axios.get(url + "sellers")
@@ -222,6 +240,31 @@ export default (props) => {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    //Form validation
+    const validadeEditUserForm = () => {
+        const profileNameInput = document.getElementById("profileNameInput")
+        const admissionalDate = document.getElementById("admissional_date")
+        var isValid = true
+
+        if(!profileNameInput.value.trim()){
+            profileNameInput.classList.add("is-invalid")
+            isValid = false
+        }
+        else{
+            profileNameInput.classList.remove("is-invalid")
+        }
+        
+        if(!moment(admissionalDate.value, "DD/MM/YYYY").isValid()){
+            admissionalDate.classList.add("is-invalid")
+            isValid = false
+        }
+        else{
+            admissionalDate.classList.remove("is-invalid")
+        }
+        
+        return isValid
     }
 
     return (
@@ -265,6 +308,7 @@ export default (props) => {
                                             <input
                                                 className="form-control form-control-sm"
                                                 placeholder="Perfil"
+                                                id="profileNameInput"
                                                 value={
                                                     selectedUser.profile_name
                                                 }
@@ -283,9 +327,7 @@ export default (props) => {
                                             />
                                         </div>
                                         <div className="form-group col-md-4">
-                                            <label>
-                                                Vendedor
-                                            </label>
+                                            <label>Vendedor</label>
                                             <select
                                                 id="sellerSelection"
                                                 className="form-control form-control-sm"
@@ -309,9 +351,11 @@ export default (props) => {
                                                 Data Admissional
                                             </label>
                                             <DateInput
+                                                className="form-control form-control-sm"
                                                 value={
                                                     selectedUser.admissional_date
                                                 }
+                                                id="admissional_date"
                                                 onChange={(val) => {
                                                     setSelectedUser(
                                                         (oldState) => {
@@ -321,7 +365,6 @@ export default (props) => {
                                                             }
                                                         }
                                                     )
-                                                    console.log(val)
                                                 }}
                                             />
                                         </div>
@@ -379,7 +422,7 @@ export default (props) => {
                                             <label htmlFor="inputEmail">
                                                 Multi. comissão
                                             </label>
-                                            <input
+                                            <DecimalNumberInput
                                                 className="form-control form-control-sm"
                                                 placeholder="1.00"
                                                 value={
@@ -421,18 +464,6 @@ export default (props) => {
                                                         }
                                                     )
                                                 }
-                                                onBlur={() =>
-                                                    parseFloat(
-                                                        selectedUser.max_discount.substring(
-                                                            0,
-                                                            selectedUser
-                                                                .max_discount
-                                                                .length - 1
-                                                        )
-                                                    ) > 100
-                                                        ? (selectedUser.max_discount = 100)
-                                                        : null
-                                                }
                                             />
                                         </div>
                                     </div>
@@ -461,9 +492,7 @@ export default (props) => {
                                                         )
                                                     }
                                                 />
-                                                <label
-                                                    className="form-check-label"
-                                                >
+                                                <label className="form-check-label">
                                                     Tem acesso
                                                 </label>
                                             </div>
@@ -490,9 +519,7 @@ export default (props) => {
                                                         )
                                                     }
                                                 />
-                                                <label
-                                                    className="form-check-label"
-                                                >
+                                                <label className="form-check-label">
                                                     Pode ver todos os orçamentos
                                                 </label>
                                             </div>
@@ -512,6 +539,7 @@ export default (props) => {
                             <button
                                 type="button"
                                 className="btn btn-success btn-sm"
+                                onClick={updateUser}
                             >
                                 Salvar alterações
                             </button>
