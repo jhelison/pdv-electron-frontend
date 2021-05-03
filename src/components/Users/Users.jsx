@@ -256,7 +256,7 @@ export default (props) => {
             profileNameInput.classList.remove("is-invalid")
         }
         
-        if(!moment(admissionalDate.value, "DD/MM/YYYY").isValid()){
+        if(!moment(admissionalDate.value, "DD/MM/YYYY").isValid() || moment(admissionalDate.value, "DD/MM/YYYY").isAfter(moment())){
             admissionalDate.classList.add("is-invalid")
             isValid = false
         }
