@@ -129,7 +129,7 @@ export default (props) => {
                                         type="button"
                                         className="btn btn-outline-warning btn-sm mr-1"
                                         onClick={() => {
-                                            setSelectedUser(user)
+                                            setSelectedUser(parseNumbers(user))
                                             showEditUserModal()
                                         }}
                                     >
@@ -220,6 +220,7 @@ export default (props) => {
         }
     }
     const updateUser = async () => {
+        var parsedUser = {...selectedUser}
         if (!validadeEditUserForm()) {
             return
         }
@@ -227,16 +228,20 @@ export default (props) => {
         const sellerSelection = document.getElementById("sellerSelection")
         sellers.forEach(val => {
             if(sellerSelection.value === val.NOMEVENDED){
-                selectedUser.cod_vend = val.CODVENDED
-                selectedUser.nome_vend = val.NOMEVENDED
+                parsedUser.cod_vend = val.CODVENDED
+                parsedUser.nome_vend = val.NOMEVENDED
             }
         })
 
+        parsedUser = parseNumbers(parsedUser)
+        setSelectedUser(parsedUser)
+        console.log(parsedUser)
+
         try {
             const res = await Axios.put(url + "user", {
-                id: selectedUser.id,
+                id: parsedUser.id,
                 content: {
-                    ...selectedUser,
+                    ...parsedUser,
                 },
             })
             getUsers()
@@ -278,6 +283,25 @@ export default (props) => {
         }
 
         return isValid
+    }
+
+    const parseNumbers = (user) => {
+        var parsedUser = {...user}
+        const parseNumber = (val) => {
+            if(val){
+                if(typeof(val) === "string"){
+                    return parseFloat(val.replace(" %", "").replace("R$ ", "").replace(",", "")).toFixed(2)
+                }
+                return parseFloat(val)
+            }
+            return null
+        }
+
+        parsedUser.salary = parseNumber(parsedUser.salary)
+        parsedUser.comission_objective = parseNumber(parsedUser.comission_objective)
+        parsedUser.max_discount = parseNumber(parsedUser.max_discount)
+
+        return parsedUser
     }
 
     return (
