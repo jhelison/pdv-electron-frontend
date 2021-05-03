@@ -10,7 +10,11 @@ import { FiPlus } from "react-icons/fi"
 
 import { Modal } from "bootstrap"
 
-import { CurrencyInput, PercentualInput, DecimalNumberInput } from "../MaskedInputs"
+import {
+    CurrencyInput,
+    PercentualInput,
+    DecimalNumberInput,
+} from "../MaskedInputs"
 import DateInput from "../DateInput"
 
 import QRCode from "react-qr-code"
@@ -216,16 +220,24 @@ export default (props) => {
         }
     }
     const updateUser = async () => {
-        if(!validadeEditUserForm()){
+        if (!validadeEditUserForm()) {
             return
         }
+
+        const sellerSelection = document.getElementById("sellerSelection")
+        sellers.forEach(val => {
+            if(sellerSelection.value === val.NOMEVENDED){
+                selectedUser.cod_vend = val.CODVENDED
+                selectedUser.nome_vend = val.NOMEVENDED
+            }
+        })
 
         try {
             const res = await Axios.put(url + "user", {
                 id: selectedUser.id,
                 content: {
                     ...selectedUser,
-                }
+                },
             })
             getUsers()
             hideEditUserModal()
@@ -248,22 +260,23 @@ export default (props) => {
         const admissionalDate = document.getElementById("admissional_date")
         var isValid = true
 
-        if(!profileNameInput.value.trim()){
+        if (!profileNameInput.value.trim()) {
             profileNameInput.classList.add("is-invalid")
             isValid = false
-        }
-        else{
+        } else {
             profileNameInput.classList.remove("is-invalid")
         }
-        
-        if(!moment(admissionalDate.value, "DD/MM/YYYY").isValid() || moment(admissionalDate.value, "DD/MM/YYYY").isAfter(moment())){
+
+        if (
+            !moment(admissionalDate.value, "DD/MM/YYYY").isValid() ||
+            moment(admissionalDate.value, "DD/MM/YYYY").isAfter(moment())
+        ) {
             admissionalDate.classList.add("is-invalid")
             isValid = false
-        }
-        else{
+        } else {
             admissionalDate.classList.remove("is-invalid")
         }
-        
+
         return isValid
     }
 
@@ -334,7 +347,7 @@ export default (props) => {
                                             >
                                                 {sellers.map((val) => {
                                                     return (
-                                                        <option
+                                                        <option key={val.CODVENDED}
                                                             selected={
                                                                 val.NOMEVENDED ===
                                                                 selectedUser.nome_vend
@@ -492,7 +505,7 @@ export default (props) => {
                                                         )
                                                     }
                                                 />
-                                                <label className="form-check-label">
+                                                <label className="form-check-label" for="gridCheck1">
                                                     Tem acesso
                                                 </label>
                                             </div>
@@ -519,7 +532,7 @@ export default (props) => {
                                                         )
                                                     }
                                                 />
-                                                <label className="form-check-label">
+                                                <label className="form-check-label" for="gridCheck">
                                                     Pode ver todos os orçamentos
                                                 </label>
                                             </div>
