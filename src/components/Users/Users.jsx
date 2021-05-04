@@ -313,10 +313,10 @@ export default (props) => {
             <div className="small-card mb-3 d-flex justify-content-end">
                 <button
                     type="button"
-                    className="btn btn-success btn-sm w-25 align-self-end"
+                    className="btn btn-success btn-sm w-25 h-100 align-self-end"
                     onClick={showNewUserModal}
                 >
-                    Adicionar novo telefone <FiPlus />
+                    Adicionar novo telefone
                 </button>
             </div>
 
