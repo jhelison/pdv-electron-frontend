@@ -28,9 +28,10 @@ const getServerStatus = async () => {
     setInterval(async () => {
         try {
             const t0 = performance.now()
-            const res = await axios.get("http://localhost:5000/")
-            const t1 = performance.now()
-            serverStatus = (t1-t0).toFixed(0)
+            const res = await axios.get("http://localhost:5000/").then(() => {
+                const t1 = performance.now()
+                serverStatus = (t1-t0).toFixed(0)
+            })
         } catch (error) {
             serverStatus = null
         }
@@ -48,6 +49,10 @@ const resetServer = () => {
 }
 
 const lastOutput = () => {
+    const lines = consoleTextOutput.split("\n")
+    if(lines.length > 100){
+        return lines.slice(lines.length - 100).join("\n")
+    }
     return consoleTextOutput
 }
 

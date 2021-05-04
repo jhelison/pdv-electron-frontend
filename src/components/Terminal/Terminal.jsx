@@ -11,6 +11,8 @@ import {lastOutput, resetServer, lastServerStatus} from "../../serverSingleton"
 
 import axios from "axios"
 
+var terminalScrollRef = null
+
 export default (props) => {
     const [pythonShellText, setPythonShellText] = useState(lastOutput())
     const [serverResponseTime, setServerResponseTime] = useState(lastServerStatus())
@@ -19,9 +21,15 @@ export default (props) => {
         getServerData()
     }, [])
 
+    useEffect(() => {
+        if(terminalScrollRef){
+            terminalScrollRef.current?.scrollIntoView({ behavior: "smooth" })
+        }
+    }, [pythonShellText])
+
     const getServerData = () => {
         setInterval(() => {
-            setPythonShellText(lastOutput)
+            setPythonShellText(lastOutput())
             setServerResponseTime(lastServerStatus())
         }, 300)
     }
@@ -43,7 +51,7 @@ export default (props) => {
                 </div>
                 
             </div>
-            <div className="card terminal-card">
+            <div className="card terminal-card" ref={(ele) => {terminalScrollRef = ele}}>
                 <pre>{pythonShellText}</pre>
             </div>
         </Main>
