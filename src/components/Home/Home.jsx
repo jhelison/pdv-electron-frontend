@@ -1,12 +1,16 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Main from "../template/Main"
 
 import { FiHome } from "react-icons/fi"
 import { FiUsers } from "react-icons/fi"
 import { FiUserCheck } from "react-icons/fi"
 import { FiServer } from "react-icons/fi"
+import { FiCheck } from "react-icons/fi"
+import { FiX } from "react-icons/fi"
 
 import QRCode from "react-qr-code"
+
+import { lastServerStatus } from "../../serverSingleton"
 
 const acessData = [
     ["10/12/2021", "Jhelison Uchoa", "Orçamento", "Adicionado"],
@@ -17,8 +21,15 @@ const acessData = [
     ["10/12/2021", "Mark", "Clientes", "Deletado"],
 ]
 
-
 export default (props) => {
+    const [serverStatus, setServerStatus] = useState(lastServerStatus)
+
+    useEffect(() => {
+        setInterval(() => {
+            setServerStatus(lastServerStatus())
+        }, 300)
+    }, [])
+
     const buildTable = () => {
         return (
             <table className="table table-sm">
@@ -43,13 +54,21 @@ export default (props) => {
         const getTypeOfChange = (text) => {
             if (text === "Adicionado") {
                 return (
-                    <div className="alert-custom alert-success-custom">{text}</div>
+                    <div className="alert-custom alert-success-custom">
+                        {text}
+                    </div>
                 )
             }
             if (text === "Atualizado") {
-                return <div className="alert-custom alert-alert-custom">{text}</div>
+                return (
+                    <div className="alert-custom alert-alert-custom">
+                        {text}
+                    </div>
+                )
             }
-            return <div className="alert-custom alert-danger-custom">{text}</div>
+            return (
+                <div className="alert-custom alert-danger-custom">{text}</div>
+            )
         }
 
         return (
@@ -130,7 +149,15 @@ export default (props) => {
                                     <div className="col-8 d-flex justify-content-center align-items-center flex-column">
                                         <div>
                                             <h6>Status Servidor</h6>
-                                            <h1 className="text-success">Ativo</h1>
+                                            {serverStatus ? (
+                                                <h1 className="text-success font-weight-bold">
+                                                    <FiCheck />
+                                                </h1>
+                                            ) : (
+                                                <h1 className="text-danger font-weight-bold">
+                                                    <FiX />
+                                                </h1>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -141,14 +168,17 @@ export default (props) => {
                 <div className="row mt-3">
                     <div className="col-7">
                         <div className="card card-qr d-flex justify-content-between align-items-center">
-                        {buildTable()}
+                            {buildTable()}
                         </div>
                     </div>
                     <div className="col">
                         <div className="card card-qr d-flex justify-content-between align-items-center">
                             <h6>Cadastro rápido de usuário</h6>
                             <div className="qr-background d-flex justify-content-center align-items-center mb-5">
-                                <QRCode value="https://www.youtube.com/watch?v=dQw4w9WgXcQ" size={250} />
+                                <QRCode
+                                    value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                    size={250}
+                                />
                             </div>
                         </div>
                     </div>
