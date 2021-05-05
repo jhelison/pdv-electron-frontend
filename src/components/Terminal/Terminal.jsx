@@ -15,7 +15,7 @@ var terminalScrollRef = null
 
 export default (props) => {
     const [pythonShellText, setPythonShellText] = useState(lastOutput())
-    const [serverResponseTime, setServerResponseTime] = useState(lastServerStatus())
+    const [serverStatus, setServerStatus] = useState(lastServerStatus())
 
     useEffect(() => {
         getServerData()
@@ -30,7 +30,7 @@ export default (props) => {
     const getServerData = () => {
         setInterval(() => {
             setPythonShellText(lastOutput())
-            setServerResponseTime(lastServerStatus())
+            setServerStatus(lastServerStatus())
         }, 300)
     }
 
@@ -43,8 +43,8 @@ export default (props) => {
             <div className="small-card mb-3 d-flex justify-content-between align-items-center flex-row">
                 <span>Status atual do servidor</span>
                 <div className="w-50 d-flex justify-content-end">
-                    {serverResponseTime ?
-                        <button type="button" className="btn btn-success w-25 btn-sm no-click"><FiCheck />{" " + serverResponseTime + " ms"}</button> :
+                    {serverStatus ?
+                        <button type="button" className="btn btn-success w-25 btn-sm no-click"><FiCheck />{" " + serverStatus.ping + " ms"}</button> :
                         <button type="button" className="btn btn-danger w-25 btn-sm no-click"><FiX /></button>
                     }
                     <button type="button" className="btn btn-secondary w-25 btn-sm align-self-end ml-1" onClick={() => resetServer()}><FiRotateCw /></button>
