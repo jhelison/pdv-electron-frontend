@@ -22,7 +22,7 @@ const acessData = [
 ]
 
 export default (props) => {
-    const [serverStatus, setServerStatus] = useState(lastServerStatus)
+    const [serverStatus, setServerStatus] = useState(lastServerStatus())
 
     useEffect(() => {
         setInterval(() => {
@@ -175,10 +175,7 @@ export default (props) => {
                         <div className="card card-qr d-flex justify-content-between align-items-center">
                             <h6>Cadastro rápido de usuário</h6>
                             <div className="qr-background d-flex justify-content-center align-items-center mb-5">
-                                <QRCode
-                                    value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                    size={250}
-                                />
+                                {serverStatus ? <QRCode value={JSON.stringify(serverStatus.host)} size={250} /> : null}
                             </div>
                         </div>
                     </div>

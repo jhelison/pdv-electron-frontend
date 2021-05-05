@@ -25,6 +25,8 @@ moment.locale("pt-br")
 import DatePicker, { registerLocale } from "react-datepicker"
 import ptBR from "date-fns/locale/pt-BR"
 
+import { lastServerStatus } from "../../serverSingleton"
+
 var editUserModal = null
 var deleteUserModal = null
 var newUserModal = null
@@ -36,9 +38,15 @@ export default (props) => {
     const [selectedUser, setSelectedUser] = useState({})
     const [sellers, setSellers] = useState([])
 
+    const [serverStatus, setServerStatus] = useState(lastServerStatus())
+
     useEffect(() => {
         getUsers()
         getSellers()
+
+        setInterval(() => {
+            setServerStatus(lastServerStatus())
+        }, 300)
     }, [])
 
     //Update select user on edituser
@@ -632,17 +640,17 @@ export default (props) => {
                             <div>
                                 <div className="d-flex justify-content-center align-items-center">
                                     <div>
-                                        <QRCode
-                                            value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                            size={250}
-                                        />
+                                        {serverStatus ? <QRCode value={JSON.stringify(serverStatus.host)} size={250} /> : null}
                                     </div>
                                     <span className="mr-5 ml-3 text-center">
                                         Ou insira manualmente
                                     </span>
                                     <ul>
-                                        <li>Servidor=Teste</li>
-                                        <li>IP=107.1.2.100:5000</li>
+                                        {serverStatus ? Object.keys(serverStatus.host).map(
+                                            (key) => {
+                                                return <li key={key}>{key + "=" + serverStatus.host[key]}</li>
+                                            }
+                                        ) : null}
                                     </ul>
                                 </div>
                             </div>
