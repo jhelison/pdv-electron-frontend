@@ -36,13 +36,9 @@ export default (props) => {
                 <thead>
                     <tr>
                         <th scope="col">Data</th>
-                        <th scope="col">Nome do vendedor</th>
-                        <th scope="col">Tabela alterada</th>
-                        <th scope="col">
-                            <div className="d-flex justify-content-end">
-                                Tipo da mudança
-                            </div>
-                        </th>
+                        <th scope="col">Vendedor</th>
+                        <th scope="col">Tabela</th>
+                        <th scope="col">Mudança</th>
                     </tr>
                 </thead>
                 {buildTableRows()}
