@@ -27,7 +27,7 @@ export default (props) => {
     useEffect(() => {
         setInterval(() => {
             setServerStatus(lastServerStatus())
-        }, 300)
+        }, 1000)
     }, [])
 
     const buildTable = () => {
@@ -111,7 +111,7 @@ export default (props) => {
                                     <div className="col-8 d-flex justify-content-center align-items-center flex-column">
                                         <div>
                                             <h6>Usuários Cadastrados</h6>
-                                            <h1>12</h1>
+                                            <h1>{serverStatus ? serverStatus.users_count : "0"}</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@ export default (props) => {
                                     <div className="col-8 d-flex justify-content-center align-items-center flex-column">
                                         <div>
                                             <h6>Usuários Ativos</h6>
-                                            <h1>6</h1>
+                                            <h1>{serverStatus ? serverStatus.users_active : "0"}</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -174,9 +174,12 @@ export default (props) => {
                     <div className="col">
                         <div className="card card-qr d-flex justify-content-between align-items-center">
                             <h6>Cadastro rápido de usuário</h6>
+                            {serverStatus ?
                             <div className="qr-background d-flex justify-content-center align-items-center mb-5">
-                                {serverStatus ? <QRCode value={JSON.stringify(serverStatus.host)} size={250} /> : null}
+                                 <QRCode value={JSON.stringify(serverStatus.host)} size={250} />
                             </div>
+                            :
+                            null}
                         </div>
                     </div>
                 </div>
