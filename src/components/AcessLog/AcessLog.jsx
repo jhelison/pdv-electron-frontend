@@ -53,7 +53,7 @@ export default (props) => {
                             </div>
                         </th>
                     </tr>
-                    <tr>
+                    {/* <tr>
                         <th scope="col" className="w-15">
                             <DateInput
                                 selected={startDate}
@@ -69,7 +69,7 @@ export default (props) => {
                         <th scope="col">
                             <Select options={options} styles={customStyles} isMulti/>
                         </th>
-                    </tr>
+                    </tr> */}
                 </thead>
                 {buildTableRows()}
             </table>
