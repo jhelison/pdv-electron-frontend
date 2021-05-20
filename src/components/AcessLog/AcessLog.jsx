@@ -18,13 +18,13 @@ const customStyles = {
 
 
 const acessData = [
-    ["10/12/2021", "Jhelison Uchoa", "Orçamento", "Adicionado"],
-    ["10/12/2021", "Jhelison Uchoa", "Orçamento", "Visualizado"],
-    ["10/12/2021", "Mark", "Clientes", "Atualizado"],
-    ["10/12/2021", "Mark", "Orçamento", "Deletado"],
-    ["10/12/2021", "Mark", "Vendas", "Atualizado"],
-    ["10/12/2021", "Mark", "Clientes", "Adicionado"],
-    ["10/12/2021", "Mark", "Clientes", "Deletado"],
+    ["10/12/2021", "Jhelison Uchoa", "Orçamento", 200, "Adicionado"],
+    ["10/12/2021", "Jhelison Uchoa", "Orçamento", 123, "Visualizado"],
+    ["10/12/2021", "Mark", "Clientes", 3, "Atualizado"],
+    ["10/12/2021", "Mark", "Orçamento", 5004, "Deletado"],
+    ["10/12/2021", "Mark", "Vendas", 2, "Atualizado"],
+    ["10/12/2021", "Mark", "Clientes", 500, "Adicionado"],
+    ["10/12/2021", "Mark", "Clientes", 2450, "Deletado"],
 ]
 
 const options = [
@@ -47,6 +47,7 @@ export default (props) => {
                         <th scope="col">Data</th>
                         <th scope="col">Nome do vendedor</th>
                         <th scope="col">Tabela alterada</th>
+                        <th scope="col">Tempo de resposta</th>
                         <th scope="col">
                             <div className="d-flex justify-content-end">
                                 Tipo da mudança
@@ -110,9 +111,10 @@ export default (props) => {
                             <td>{val[0]}</td>
                             <td>{val[1]}</td>
                             <td>{val[2]}</td>
+                            <td>{val[3] + " ms"}</td>
                             <td>
                                 <div className="d-flex justify-content-end">
-                                    {getTypeOfChange(val[3])}
+                                    {getTypeOfChange(val[4])}
                                 </div>
                             </td>
                         </tr>
