@@ -74,10 +74,12 @@ export default (props) => {
 
     const buildTableRows = () => {
         const getStatusIndicator = (status) => {
-            if (status) {
+            if (status === null) {
+                return <status-indicator pulse></status-indicator>
+            } else if (status) {
                 return <status-indicator positive></status-indicator>
             } else {
-                return <status-indicator negative pulse></status-indicator>
+                return <status-indicator negative></status-indicator>
             }
         }
 
@@ -86,7 +88,7 @@ export default (props) => {
                 return (
                     <button
                         type="button"
-                        className="btn btn-outline-secondary btn-sm mr-1"
+                        className="btn btn-outline-danger btn-sm mr-1"
                         onClick={() => {
                             changeUserAcess(user)
                         }}
@@ -124,7 +126,9 @@ export default (props) => {
                                         )}
                                     </div>
                                     <span>
-                                        {user.flag_have_acess
+                                        {user.flag_have_acess === null
+                                            ? "Em espera"
+                                            : user.flag_have_acess
                                             ? "Liberado"
                                             : "Bloqueado"}
                                     </span>
@@ -228,14 +232,14 @@ export default (props) => {
         }
     }
     const updateUser = async () => {
-        var parsedUser = {...selectedUser}
+        var parsedUser = { ...selectedUser }
         if (!validadeEditUserForm()) {
             return
         }
 
         const sellerSelection = document.getElementById("sellerSelection")
-        sellers.forEach(val => {
-            if(sellerSelection.value === val.NOMEVENDED){
+        sellers.forEach((val) => {
+            if (sellerSelection.value === val.NOMEVENDED) {
                 parsedUser.cod_vend = val.CODVENDED
                 parsedUser.nome_vend = val.NOMEVENDED
             }
@@ -294,11 +298,16 @@ export default (props) => {
     }
 
     const parseNumbers = (user) => {
-        var parsedUser = {...user}
+        var parsedUser = { ...user }
         const parseNumber = (val) => {
-            if(val){
-                if(typeof(val) === "string"){
-                    return parseFloat(val.replace(" %", "").replace("R$ ", "").replace(",", "")).toFixed(2)
+            if (val) {
+                if (typeof val === "string") {
+                    return parseFloat(
+                        val
+                            .replace(" %", "")
+                            .replace("R$ ", "")
+                            .replace(",", "")
+                    ).toFixed(2)
                 }
                 return parseFloat(val)
             }
@@ -306,7 +315,9 @@ export default (props) => {
         }
 
         parsedUser.salary = parseNumber(parsedUser.salary)
-        parsedUser.comission_objective = parseNumber(parsedUser.comission_objective)
+        parsedUser.comission_objective = parseNumber(
+            parsedUser.comission_objective
+        )
         parsedUser.max_discount = parseNumber(parsedUser.max_discount)
 
         return parsedUser
@@ -379,7 +390,8 @@ export default (props) => {
                                             >
                                                 {sellers.map((val) => {
                                                     return (
-                                                        <option key={val.CODVENDED}
+                                                        <option
+                                                            key={val.CODVENDED}
                                                             selected={
                                                                 val.NOMEVENDED ===
                                                                 selectedUser.nome_vend
@@ -537,7 +549,10 @@ export default (props) => {
                                                         )
                                                     }
                                                 />
-                                                <label className="form-check-label" for="gridCheck1">
+                                                <label
+                                                    className="form-check-label"
+                                                    for="gridCheck1"
+                                                >
                                                     Tem acesso
                                                 </label>
                                             </div>
@@ -564,7 +579,10 @@ export default (props) => {
                                                         )
                                                     }
                                                 />
-                                                <label className="form-check-label" for="gridCheck">
+                                                <label
+                                                    className="form-check-label"
+                                                    for="gridCheck"
+                                                >
                                                     Pode ver todos os orçamentos
                                                 </label>
                                             </div>
@@ -640,17 +658,34 @@ export default (props) => {
                             <div>
                                 <div className="d-flex justify-content-center align-items-center">
                                     <div>
-                                        {serverStatus ? <QRCode value={JSON.stringify(serverStatus.host)} size={250} /> : null}
+                                        {serverStatus ? (
+                                            <QRCode
+                                                value={JSON.stringify(
+                                                    serverStatus.host
+                                                )}
+                                                size={250}
+                                            />
+                                        ) : null}
                                     </div>
                                     <span className="mr-5 ml-3 text-center">
                                         Ou insira manualmente
                                     </span>
                                     <ul>
-                                        {serverStatus ? Object.keys(serverStatus.host).map(
-                                            (key) => {
-                                                return <li key={key}>{key + "=" + serverStatus.host[key]}</li>
-                                            }
-                                        ) : null}
+                                        {serverStatus
+                                            ? Object.keys(
+                                                  serverStatus.host
+                                              ).map((key) => {
+                                                  return (
+                                                      <li key={key}>
+                                                          {key +
+                                                              "=" +
+                                                              serverStatus.host[
+                                                                  key
+                                                              ]}
+                                                      </li>
+                                                  )
+                                              })
+                                            : null}
                                     </ul>
                                 </div>
                             </div>
