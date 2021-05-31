@@ -31,7 +31,7 @@ var editUserModal = null
 var deleteUserModal = null
 var newUserModal = null
 
-const url = "http://localhost:5000/"
+const url = "http://localhost:5151/"
 
 export default (props) => {
     const [users, setUsers] = useState([])
@@ -661,7 +661,7 @@ export default (props) => {
                                         {serverStatus ? (
                                             <QRCode
                                                 value={JSON.stringify(
-                                                    serverStatus.host
+                                                    serverStatus.server_data
                                                 )}
                                                 size={250}
                                             />
@@ -671,21 +671,12 @@ export default (props) => {
                                         Ou insira manualmente
                                     </span>
                                     <ul>
-                                        {serverStatus
-                                            ? Object.keys(
-                                                  serverStatus.host
-                                              ).map((key) => {
-                                                  return (
-                                                      <li key={key}>
-                                                          {key +
-                                                              "=" +
-                                                              serverStatus.host[
-                                                                  key
-                                                              ]}
-                                                      </li>
-                                                  )
-                                              })
-                                            : null}
+                                        {serverStatus &&
+                                            <React.Fragment>
+                                            <li>{"Porta = " + serverStatus.server_data['port']}</li>
+                                            <li>{"Chave de acesso = " + serverStatus.server_data['acess_code']}</li>
+                                            </React.Fragment>
+                                        }
                                     </ul>
                                 </div>
                             </div>

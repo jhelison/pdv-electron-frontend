@@ -172,7 +172,7 @@ export default (props) => {
                             <h6>Cadastro rápido de usuário</h6>
                             {serverStatus ?
                             <div className="qr-background d-flex justify-content-center align-items-center mb-5">
-                                 <QRCode value={JSON.stringify(serverStatus.host)} size={250} />
+                                 <QRCode value={JSON.stringify(serverStatus.server_data)} size={250} />
                             </div>
                             :
                             null}

@@ -28,7 +28,7 @@ const getServerStatus = async () => {
     setInterval(async () => {
         try {
             const t0 = performance.now()
-            const res = await axios.get("http://localhost:5000/dashboard")
+            const res = await axios.get("http://localhost:5151/dashboard")
             const t1 = performance.now()
             serverStatus = res.data
             serverStatus["ping"] = (t1-t0).toFixed(0)
